@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'app.dart';
 
-void main() {
-  runApp(const MainApp());
-}
+void main() async {
+  // Load environment variables
+  await dotenv.load(fileName: ".env");
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
-  }
+  // Wrap the app with ProviderScope
+  runApp(const ProviderScope(child: App()));
 }
