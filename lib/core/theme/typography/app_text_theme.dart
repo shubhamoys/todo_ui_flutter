@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_colors.dart';
+import '../colors/app_colors.dart';
 import 'app_typography.dart';
 
 class AppTextTheme {
