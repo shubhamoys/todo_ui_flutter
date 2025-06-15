@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo_ui_flutter/core/theme/app_text_theme.dart';
-import 'app_colors.dart';
+import 'package:todo_ui_flutter/core/theme/typography/app_text_theme.dart';
+import 'colors/app_colors.dart';
 
 class AppTheme {
   AppTheme._();
@@ -31,6 +31,30 @@ class AppTheme {
         fontWeight: FontWeight.normal,
       ),
       actionTextColor: AppColors.primary, // Action button color
+    ),
+    inputDecorationTheme: const InputDecorationTheme(
+      labelStyle: TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: 14,
+        fontWeight: FontWeight.normal,
+        color: AppColors.lightTextPrimary,
+      ),
+      hintStyle: TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: 14,
+        fontWeight: FontWeight.normal,
+        color: AppColors.lightTextSecondary,
+      ),
+      // Style for the input text itself
+      floatingLabelStyle: TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: AppColors.lightTextPrimary,
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+      ),
     ),
     colorScheme: const ColorScheme.light(
       primary: AppColors.primary,
@@ -70,6 +94,29 @@ class AppTheme {
         fontWeight: FontWeight.normal,
       ),
       actionTextColor: AppColors.primary, // Action button color
+    ),
+    inputDecorationTheme: const InputDecorationTheme(
+      labelStyle: TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: 14,
+        fontWeight: FontWeight.normal,
+        color: AppColors.darkTextPrimary,
+      ),
+      hintStyle: TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: 14,
+        fontWeight: FontWeight.normal,
+        color: AppColors.darkTextSecondary,
+      ),
+      floatingLabelStyle: TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: AppColors.darkTextPrimary,
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+      ),
     ),
     colorScheme: const ColorScheme.dark(
       primary: AppColors.primary,
