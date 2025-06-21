@@ -1,11 +1,17 @@
 import 'package:todo_ui_flutter/features/auth/data/models/auth_response_model.dart';
 import 'package:todo_ui_flutter/features/auth/domain/params/login_params.dart';
+import 'package:todo_ui_flutter/features/auth/domain/params/registration_params.dart';
 
 abstract class AuthRepository {
   /// Authenticates a user with email and password
   /// Returns a [AuthResponseModel] containing the login result
   /// Throws an [Exception] if the request fails
   Future<AuthResponseModel> login(LoginParams params);
+
+  /// Registers a user with name, email and password
+  /// Returns a [AuthResponseModel] containing the registration result
+  /// Throws an [Exception] if the request fails
+  Future<AuthResponseModel> register(RegistrationParams params);
 
   /// Saves the authenticated user's token securely
   /// Returns true if successful, false otherwise
