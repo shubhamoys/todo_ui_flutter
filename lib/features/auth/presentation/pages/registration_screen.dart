@@ -6,47 +6,55 @@ import 'package:todo_ui_flutter/core/theme/spacing/app_spacing.dart';
 import 'package:todo_ui_flutter/core/widgets/buttons/app_primary_button.dart';
 import 'package:todo_ui_flutter/core/widgets/input_fields/app_text_field.dart';
 import 'package:todo_ui_flutter/core/widgets/snackbar/app_snackbar.dart';
-import 'package:todo_ui_flutter/features/auth/presentation/providers/login_provider.dart';
+import 'package:todo_ui_flutter/features/auth/presentation/providers/registration_provider.dart';
 
 // Change StatefulWidget to ConsumerStatefulWidget
-class LoginScreen extends ConsumerStatefulWidget {
-  const LoginScreen({super.key});
+class RegistrationScreen extends ConsumerStatefulWidget {
+  const RegistrationScreen({super.key});
 
   @override
-  ConsumerState<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<RegistrationScreen> createState() => _RegistrationScreenState();
 }
 
 // Change State to ConsumerState
-class _LoginScreenState extends ConsumerState<LoginScreen> {
+class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   bool _isPasswordVisible = false;
+  bool _isConfirmPasswordVisible = false;
 
   void _submitForm() async {
     if (_formKey.currentState!.validate()) {
-      // Dismiss the keyboard before login
+      // Dismiss the keyboard before register
       FocusScope.of(context).unfocus();
 
+      final name = _nameController.text.trim();
       final email = _emailController.text.trim();
       final password = _passwordController.text.trim();
+      final confirmPassword = _confirmPasswordController.text.trim();
 
-      // Call login through provider
-      await ref.read(loginProvider.notifier).login(email, password);
+      // Call Register through provider
+      await ref
+          .read(registrationProvider.notifier)
+          .register(name, email, password, confirmPassword);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    // Watch login state
-    final loginState = ref.watch(loginProvider);
+    // Watch registration state
+    final registrationState = ref.watch(registrationProvider);
 
     // Listen to state changes
-    ref.listen(loginProvider, (previous, current) {
+    ref.listen(registrationProvider, (previous, current) {
       if (current.isAuthenticated) {
-        // Navigate to home on successful login
+        // Navigate to home on successful registration
         context.go('/');
       }
       if (current.errorMessage != null) {
@@ -82,11 +90,28 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       // Header
                       Center(
                         child: Text(
-                          'Welcome Back',
+                          'Welcome to Todo UI',
                           style: theme.textTheme.headlineLarge,
                         ),
                       ),
                       const SizedBox(height: AppSpacing.xl),
+
+                      // Name Field
+                      SizedBox(
+                        width: double.infinity,
+                        child: AppTextField(
+                          controller: _nameController,
+                          labelText: 'Name',
+                          hintText: 'Enter your name',
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your name';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      const SizedBox(height: AppSpacing.m),
 
                       // Email Field
                       SizedBox(
@@ -134,17 +159,47 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           },
                         ),
                       ),
+                      const SizedBox(height: AppSpacing.m),
+
+                      // Confirm Password Field
+                      SizedBox(
+                        width: double.infinity,
+                        child: AppTextField(
+                          controller: _confirmPasswordController,
+                          labelText: 'Confirm Password',
+                          hintText: 'Enter your password again',
+                          isPassword: true,
+                          isPasswordVisible: _isConfirmPasswordVisible,
+                          onPasswordToggle: () {
+                            setState(() {
+                              _isConfirmPasswordVisible =
+                                  !_isConfirmPasswordVisible;
+                            });
+                          },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please confirm your password';
+                            }
+                            if (value.length < 6) {
+                              return 'Password must be at least 6 characters';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
                       const SizedBox(height: AppSpacing.l),
 
-                      // Login Button
+                      // Registration Button
                       Center(
                         child: AppPrimaryButton(
-                          text:
-                              loginState.isLoading ? 'Logging in...' : 'Login',
-                          onPressed: loginState.isLoading ? null : _submitForm,
+                          text: registrationState.isLoading
+                              ? 'Registering...'
+                              : 'Register',
+                          onPressed:
+                              registrationState.isLoading ? null : _submitForm,
                           backgroundColor: AppColors.primary,
                           textColor: AppColors.lightBackground,
-                          isLoading: loginState.isLoading,
+                          isLoading: registrationState.isLoading,
                           width: double.infinity,
                           padding: const EdgeInsets.symmetric(
                             horizontal: AppSpacing.m,
@@ -154,25 +209,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ),
                       const SizedBox(height: AppSpacing.m),
 
-                      // Forgot Password
-                      TextButton(
-                        onPressed: loginState.isLoading ? null : () {},
-                        child: const Text('Forgot Password?'),
-                      ),
-                      const SizedBox(height: AppSpacing.m),
-
-                      // Registration Prompt
+                      // Login Prompt
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text("Don't have an account?"),
+                          const Text("Already have an account?"),
                           TextButton(
-                            onPressed: loginState.isLoading
+                            onPressed: registrationState.isLoading
                                 ? null
                                 : () {
-                                    context.go('/register');
+                                    context.go('/');
                                   },
-                            child: const Text('Register'),
+                            child: const Text('Login'),
                           ),
                         ],
                       ),

@@ -1,16 +1,16 @@
-import 'package:todo_ui_flutter/features/auth/domain/repositories/auth_repository.dart';
 import 'package:todo_ui_flutter/features/auth/data/models/auth_response_model.dart';
-import 'package:todo_ui_flutter/features/auth/domain/params/login_params.dart';
+import 'package:todo_ui_flutter/features/auth/domain/params/registration_params.dart';
+import 'package:todo_ui_flutter/features/auth/domain/repositories/auth_repository.dart';
 
-class LoginUseCase {
+class RegistrationUseCase {
   final AuthRepository _authRepository;
 
-  LoginUseCase(this._authRepository);
+  RegistrationUseCase(this._authRepository);
 
-  /// Executes the login use case with the given email and password
-  /// Returns [AuthResponseModel] containing the login result and user data
+  /// Executes the registration use case with the given name, email and password
+  /// Returns [AuthResponseModel] containing the registration result and user data
   /// Throws an [Exception] if the request fails
-  Future<AuthResponseModel> execute(LoginParams params) async {
+  Future<AuthResponseModel> execute(RegistrationParams params) async {
     // Input validation
     if (params.email.isEmpty || !params.email.contains('@')) {
       throw 'Invalid email format';
@@ -19,9 +19,13 @@ class LoginUseCase {
       throw 'Password must be at least 6 characters';
     }
 
+    if (params.password != params.confirmPassword) {
+      throw 'Passwords do not match';
+    }
+
     try {
       // Call the repository to perform login
-      final response = await _authRepository.login(params);
+      final response = await _authRepository.register(params);
 
       // If login is successful and we have a token, save it
       if (response.status && response.data?.token != null) {

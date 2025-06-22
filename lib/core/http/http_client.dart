@@ -7,8 +7,7 @@ import 'package:todo_ui_flutter/core/constants/storage_keys.dart';
 class HttpClient extends http.BaseClient {
   final http.Client _client = http.Client();
   final SharedPreferences _prefs;
-  final String baseUrl =
-      '${EnvironmentConfig.apiBaseUrl}:${EnvironmentConfig.port}';
+  final String baseUrl = EnvironmentConfig.apiBaseUrl;
 
   HttpClient(this._prefs);
 

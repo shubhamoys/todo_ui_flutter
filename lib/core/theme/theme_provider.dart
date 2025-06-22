@@ -7,11 +7,13 @@ final themeProvider = StateNotifierProvider<ThemeNotifier, ThemeMode>((ref) {
 });
 
 class ThemeNotifier extends StateNotifier<ThemeMode> {
+  bool _loaded = false;
+
   ThemeNotifier() : super(ThemeMode.system) {
     _loadThemePreference();
   }
 
-  void _loadThemePreference() async {
+  Future<void> _loadThemePreference() async {
     final prefs = await SharedPreferences.getInstance();
     final theme = prefs.getString('themeMode') ?? 'system';
     switch (theme) {
@@ -24,6 +26,14 @@ class ThemeNotifier extends StateNotifier<ThemeMode> {
       default:
         state = ThemeMode.system;
     }
+
+    _loaded = true;
+  }
+
+  Future<void> ensureLoaded() async {
+    if (!_loaded) {
+      await _loadThemePreference();
+    }
   }
 
   void setTheme(ThemeMode themeMode) async {
@@ -33,3 +43,7 @@ class ThemeNotifier extends StateNotifier<ThemeMode> {
         'themeMode', themeMode.name); // Save as 'light', 'dark', or 'system'
   }
 }
+
+final themeReadyProvider = FutureProvider<void>((ref) async {
+  await ref.read(themeProvider.notifier).ensureLoaded();
+});
