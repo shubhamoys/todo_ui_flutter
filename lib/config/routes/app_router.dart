@@ -4,6 +4,7 @@ import 'package:todo_ui_flutter/core/utils/auth_utils.dart';
 import 'package:todo_ui_flutter/core/widgets/navigation_bar/bottom_nav_shell.dart';
 import 'package:todo_ui_flutter/features/auth/presentation/pages/login_screen.dart';
 import 'package:todo_ui_flutter/features/auth/presentation/pages/registration_screen.dart';
+import 'package:todo_ui_flutter/features/settings/presentation/pages/settings_screen.dart';
 import 'package:todo_ui_flutter/features/task_details/presentation/pages/task_details_screen.dart';
 import 'package:todo_ui_flutter/features/tasks/presentation/pages/tasks_screen.dart';
 import 'package:todo_ui_flutter/features/user_profile/presentation/pages/profile_screen.dart';
@@ -122,6 +123,25 @@ final GoRouter appRouter = GoRouter(
         key: state.pageKey,
         transitionDuration: const Duration(milliseconds: 300),
         child: const RegistrationScreen(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return SlideTransition(
+            position: animation.drive(
+              Tween(begin: const Offset(1, 0), end: Offset.zero)
+                  .chain(CurveTween(curve: Curves.easeInOut)),
+            ),
+            child: child,
+          );
+        },
+      ),
+    ),
+
+    // Settings Screen
+    GoRoute(
+      path: '/settings',
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        transitionDuration: const Duration(milliseconds: 300),
+        child: const SettingsScreen(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return SlideTransition(
             position: animation.drive(

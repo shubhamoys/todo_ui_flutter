@@ -11,8 +11,8 @@ class AppTheme {
     primaryColor: AppColors.primary,
     fontFamily: 'Poppins',
     scaffoldBackgroundColor: AppColors.lightBackground,
-    splashColor: Colors.transparent,
-    highlightColor: Colors.transparent,
+    // splashColor: Colors.transparent,
+    // highlightColor: Colors.transparent,
 
     // Text theme for light mode
     textTheme: AppTextTheme.lightTextTheme,
@@ -101,8 +101,8 @@ class AppTheme {
     primaryColor: AppColors.primary,
     fontFamily: 'Poppins',
     scaffoldBackgroundColor: AppColors.darkBackground,
-    splashColor: Colors.transparent,
-    highlightColor: Colors.transparent,
+    // splashColor: Colors.transparent,
+    // highlightColor: Colors.transparent,
 
     // Text theme for dark mode
     textTheme: AppTextTheme.darkTextTheme,

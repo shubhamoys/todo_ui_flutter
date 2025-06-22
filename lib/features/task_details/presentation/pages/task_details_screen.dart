@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo_ui_flutter/core/theme/theme_provider.dart';
+import 'package:todo_ui_flutter/core/theme/spacing/app_spacing.dart';
 
 class TaskDetailScreen extends ConsumerStatefulWidget {
   // Change to ConsumerStatefulWidget
@@ -18,6 +19,10 @@ class _TaskDetailScreenState extends ConsumerState<TaskDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.chevron_left, size: AppSpacing.l),
+          onPressed: () => Navigator.of(context).maybePop(),
+        ),
         title: Builder(
           builder: (context) => const Text('Task detail screen'),
         ),
