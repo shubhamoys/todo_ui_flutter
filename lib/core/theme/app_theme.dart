@@ -11,7 +11,13 @@ class AppTheme {
     primaryColor: AppColors.primary,
     fontFamily: 'Poppins',
     scaffoldBackgroundColor: AppColors.lightBackground,
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
+
+    // Text theme for light mode
     textTheme: AppTextTheme.lightTextTheme,
+
+    // AppBar theme for light mode
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.primary,
       elevation: 0,
@@ -25,6 +31,8 @@ class AppTheme {
         color: AppColors.darkTextPrimary,
       ),
     ),
+
+    // SnackBar theme for light mode
     snackBarTheme: const SnackBarThemeData(
       backgroundColor: AppColors.lightSurface, // Default background color
       contentTextStyle: TextStyle(
@@ -32,6 +40,8 @@ class AppTheme {
       ),
       actionTextColor: AppColors.primary, // Action button color
     ),
+
+    // Input decoration theme for light mode
     inputDecorationTheme: const InputDecorationTheme(
       labelStyle: TextStyle(
         fontFamily: 'Poppins',
@@ -56,6 +66,23 @@ class AppTheme {
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
       ),
     ),
+    // Bottom navigation bar theme for light mode
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      // splashFactory: NoSplash.splashFactory,
+      selectedItemColor: AppColors.primary, // or any color you want
+      unselectedItemColor: AppColors.lightTextSecondary,
+      backgroundColor: AppColors.lightSurface,
+      selectedLabelStyle: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w500,
+      ),
+      unselectedLabelStyle: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.normal,
+      ),
+    ),
+
+    // Color scheme for light mode
     colorScheme: const ColorScheme.light(
       primary: AppColors.primary,
       secondary: AppColors.secondary,
@@ -74,7 +101,13 @@ class AppTheme {
     primaryColor: AppColors.primary,
     fontFamily: 'Poppins',
     scaffoldBackgroundColor: AppColors.darkBackground,
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
+
+    // Text theme for dark mode
     textTheme: AppTextTheme.darkTextTheme,
+
+    // AppBar theme for dark mode
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.primary,
       elevation: 0,
@@ -88,6 +121,8 @@ class AppTheme {
         color: AppColors.darkTextPrimary,
       ),
     ),
+
+    // SnackBar theme for dark mode
     snackBarTheme: const SnackBarThemeData(
       backgroundColor: AppColors.darkSurface, // Default background color
       contentTextStyle: TextStyle(
@@ -95,6 +130,8 @@ class AppTheme {
       ),
       actionTextColor: AppColors.primary, // Action button color
     ),
+
+    // Input decoration theme for dark mode
     inputDecorationTheme: const InputDecorationTheme(
       labelStyle: TextStyle(
         fontFamily: 'Poppins',
@@ -108,6 +145,7 @@ class AppTheme {
         fontWeight: FontWeight.normal,
         color: AppColors.darkTextSecondary,
       ),
+      // Style for the input text itself
       floatingLabelStyle: TextStyle(
         fontFamily: 'Poppins',
         fontSize: 12,
@@ -118,6 +156,23 @@ class AppTheme {
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
       ),
     ),
+
+    // Bottom navigation bar theme for dark mode
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      selectedItemColor: AppColors.primary,
+      unselectedItemColor: AppColors.darkTextSecondary,
+      backgroundColor: AppColors.darkSurface,
+      selectedLabelStyle: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w500,
+      ),
+      unselectedLabelStyle: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.normal,
+      ),
+    ),
+
+    // Color scheme for dark mode
     colorScheme: const ColorScheme.dark(
       primary: AppColors.primary,
       secondary: AppColors.secondary,

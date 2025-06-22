@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo_ui_flutter/core/utils/auth_utils.dart';
+import 'package:todo_ui_flutter/core/widgets/navigation_bar/bottom_nav_shell.dart';
 import 'package:todo_ui_flutter/features/auth/presentation/pages/login_screen.dart';
 import 'package:todo_ui_flutter/features/auth/presentation/pages/registration_screen.dart';
 import 'package:todo_ui_flutter/features/task_details/presentation/pages/task_details_screen.dart';
 import 'package:todo_ui_flutter/features/tasks/presentation/pages/tasks_screen.dart';
+import 'package:todo_ui_flutter/features/user_profile/presentation/pages/profile_screen.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: '/',
@@ -26,24 +28,54 @@ final GoRouter appRouter = GoRouter(
     return null;
   },
   routes: [
-    // Landing/Tasks List Screen
-    GoRoute(
-      path: '/',
-      pageBuilder: (context, state) => CustomTransitionPage(
-        key: state.pageKey,
-        transitionDuration: const Duration(milliseconds: 300),
-        child: const TaskScreen(),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return SlideTransition(
-            position: animation.drive(
-              Tween(begin: const Offset(1, 0), end: Offset.zero)
-                  .chain(CurveTween(curve: Curves.easeInOut)),
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) =>
+          BottomNavShell(navigationShell: navigationShell),
+      branches: [
+        // Tasks Tab
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/',
+              pageBuilder: (context, state) => const NoTransitionPage(
+                child: TaskScreen(),
+              ),
             ),
-            child: child,
-          );
-        },
-      ),
+          ],
+        ),
+        // Profile Tab
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/profile',
+              pageBuilder: (context, state) => const NoTransitionPage(
+                child: ProfileScreen(),
+              ),
+            ),
+          ],
+        ),
+      ],
     ),
+
+    // Outside the StatefulShellRoute
+    // Landing/Tasks List Screen
+    // GoRoute(
+    //   path: '/',
+    //   pageBuilder: (context, state) => CustomTransitionPage(
+    //     key: state.pageKey,
+    //     transitionDuration: const Duration(milliseconds: 300),
+    //     child: const TaskScreen(),
+    //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+    //       return SlideTransition(
+    //         position: animation.drive(
+    //           Tween(begin: const Offset(1, 0), end: Offset.zero)
+    //               .chain(CurveTween(curve: Curves.easeInOut)),
+    //         ),
+    //         child: child,
+    //       );
+    //     },
+    //   ),
+    // ),
 
 // Task Details Screen
     GoRoute(
