@@ -25,7 +25,7 @@ class App extends ConsumerWidget {
     final themeMode = ref.watch(themeProvider);
 
     return MaterialApp.router(
-      title: 'Todo App',
+      title: 'UpToDo',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: themeMode, // Use ThemeMode from provider
