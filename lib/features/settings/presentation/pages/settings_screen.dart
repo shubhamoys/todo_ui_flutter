@@ -10,16 +10,16 @@ class SettingsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.chevron_left, size: AppSpacing.l),
-            onPressed: () => Navigator.of(context).maybePop(),
-          ),
-          title: const Text('Settings'),
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.chevron_left, size: AppSpacing.l),
+          onPressed: () => Navigator.of(context).maybePop(),
         ),
-        body: SingleChildScrollView(
+        title: const Text('Settings'),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSpacing.l),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

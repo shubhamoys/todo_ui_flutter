@@ -58,9 +58,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       }
     });
 
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: AppSpacing.l),
           child: ConstrainedBox(
             constraints: BoxConstraints(

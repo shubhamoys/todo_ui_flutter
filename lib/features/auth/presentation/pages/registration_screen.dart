@@ -66,9 +66,9 @@ class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
       }
     });
 
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: AppSpacing.l),
           child: ConstrainedBox(
             constraints: BoxConstraints(
