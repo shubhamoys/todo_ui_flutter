@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_ui_flutter/core/theme/spacing/app_spacing.dart';
 
-class AppPrimaryButton extends StatelessWidget {
+class AppFillButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
   final Color backgroundColor;
@@ -12,7 +12,7 @@ class AppPrimaryButton extends StatelessWidget {
   final double? fontSize;
   final EdgeInsetsGeometry padding;
 
-  const AppPrimaryButton({
+  const AppFillButton({
     super.key,
     required this.text,
     required this.onPressed,

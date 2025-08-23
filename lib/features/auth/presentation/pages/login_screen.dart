@@ -138,7 +138,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
                       // Login Button
                       Center(
-                        child: AppPrimaryButton(
+                        child: AppFillButton(
                           text:
                               loginState.isLoading ? 'Logging in...' : 'Login',
                           onPressed: loginState.isLoading ? null : _submitForm,

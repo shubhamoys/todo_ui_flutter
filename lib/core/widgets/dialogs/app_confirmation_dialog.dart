@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_ui_flutter/core/widgets/buttons/app_outline_button.dart';
 import 'package:todo_ui_flutter/core/theme/spacing/app_spacing.dart';
+import 'package:todo_ui_flutter/core/widgets/buttons/app_primary_button.dart';
 
 class AppConfirmationDialog extends StatelessWidget {
   final String confirmationText;
@@ -8,6 +9,8 @@ class AppConfirmationDialog extends StatelessWidget {
   final String cancelLabel;
   final Color confirmColor;
   final Color cancelColor;
+  final Color confirmLabelColor;
+  final Color cancelLabelColor;
   final VoidCallback onConfirm;
   final VoidCallback onCancel;
 
@@ -18,6 +21,8 @@ class AppConfirmationDialog extends StatelessWidget {
     required this.cancelLabel,
     required this.confirmColor,
     required this.cancelColor,
+    required this.confirmLabelColor,
+    required this.cancelLabelColor,
     required this.onConfirm,
     required this.onCancel,
   });
@@ -47,16 +52,16 @@ class AppConfirmationDialog extends StatelessWidget {
                     text: cancelLabel,
                     onPressed: onCancel,
                     borderColor: cancelColor,
-                    textColor: cancelColor,
+                    textColor: cancelLabelColor,
                   ),
                 ),
                 const SizedBox(width: AppSpacing.m),
                 Expanded(
-                  child: AppOutlineButton(
+                  child: AppFillButton(
                     text: confirmLabel,
                     onPressed: onConfirm,
-                    borderColor: confirmColor,
-                    textColor: confirmColor,
+                    backgroundColor: confirmColor,
+                    textColor: confirmLabelColor,
                   ),
                 ),
               ],

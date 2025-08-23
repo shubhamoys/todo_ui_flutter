@@ -191,7 +191,7 @@ class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
 
                       // Registration Button
                       Center(
-                        child: AppPrimaryButton(
+                        child: AppFillButton(
                           text: registrationState.isLoading
                               ? 'Registering...'
                               : 'Register',

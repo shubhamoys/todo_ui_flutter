@@ -18,7 +18,9 @@ class ProfileScreen extends ConsumerWidget {
         confirmLabel: 'Logout',
         cancelLabel: 'Cancel',
         confirmColor: Theme.of(context).colorScheme.error,
+        confirmLabelColor: AppColors.darkTextPrimary,
         cancelColor: Theme.of(context).colorScheme.primary,
+        cancelLabelColor: Theme.of(context).colorScheme.primary,
         onConfirm: () async {
           Navigator.of(context).pop(); // Close the dialog
           await AuthUtils.logout();

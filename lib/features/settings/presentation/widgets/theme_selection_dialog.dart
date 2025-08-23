@@ -71,13 +71,13 @@ class _ThemeSelectionDialogState extends State<ThemeSelectionDialog> {
                   child: AppOutlineButton(
                     text: 'Cancel',
                     onPressed: widget.onCancel,
-                    borderColor: Theme.of(context).colorScheme.primary,
-                    textColor: Theme.of(context).colorScheme.primary,
+                    borderColor: Theme.of(context).colorScheme.error,
+                    textColor: Theme.of(context).colorScheme.error,
                   ),
                 ),
                 const SizedBox(width: AppSpacing.m),
                 Expanded(
-                  child: AppPrimaryButton(
+                  child: AppFillButton(
                     text: 'Confirm',
                     onPressed: () => widget.onConfirm(_selectedTheme),
                     backgroundColor: Theme.of(context).colorScheme.primary,
